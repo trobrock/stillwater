@@ -9,7 +9,7 @@ end
 
 class TestException < StandardError ; end
 
-module Balancer
+module Stillwater
   describe ConnectionPool do
     subject { ConnectionPool.new }
 
