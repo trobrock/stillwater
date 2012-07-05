@@ -1,4 +1,4 @@
-require 'balancer'
+require 'stillwater'
 
 RSpec.configure do |config|
   # Use color in STDOUT

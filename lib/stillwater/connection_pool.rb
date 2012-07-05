@@ -1,6 +1,6 @@
 require 'active_support/core_ext/array'
 
-module Balancer
+module Stillwater
   class ConnectionNotAvailable < StandardError ; end
 
   class ConnectionPool

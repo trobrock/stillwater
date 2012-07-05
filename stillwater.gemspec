@@ -1,5 +1,5 @@
 # -*- encoding: utf-8 -*-
-require File.expand_path('../lib/balancer/version', __FILE__)
+require File.expand_path('../lib/stillwater/version', __FILE__)
 
 Gem::Specification.new do |gem|
   gem.authors       = ["Trae Robrock"]
@@ -11,9 +11,9 @@ Gem::Specification.new do |gem|
   gem.files         = `git ls-files`.split($\)
   gem.executables   = gem.files.grep(%r{^bin/}).map{ |f| File.basename(f) }
   gem.test_files    = gem.files.grep(%r{^(test|spec|features)/})
-  gem.name          = "balancer"
+  gem.name          = "stillwater"
   gem.require_paths = ["lib"]
-  gem.version       = Balancer::VERSION
+  gem.version       = Stillwater::VERSION
 
   gem.add_dependency %q<activesupport>, '~> 2.3.0'
 

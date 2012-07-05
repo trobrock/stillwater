@@ -1,4 +1,4 @@
-# Balancer
+# Stillwater
 
 TODO: Write a gem description
 
