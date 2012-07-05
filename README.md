@@ -46,5 +46,5 @@ Or install it yourself as:
 
 ## Contributors
 
-* Trae Robrock (@trobrock)
-* Julio Santos (@julio)
+* Trae Robrock ( https://github.com/trobrock )
+* Julio Santos ( https://github.com/julio )
