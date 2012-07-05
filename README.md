@@ -18,23 +18,25 @@ Or install it yourself as:
 
 ## Usage
 
-    pool = Stillwater::ConnectionPool.new
-    %q{ host1.com host2.com }.each do |host|
-      pool.add { MyConnectionClass.new(host) }
-    end
+```ruby
+pool = Stillwater::ConnectionPool.new
+%q{ host1.com host2.com }.each do |host|
+  pool.add { MyConnectionClass.new(host) }
+end
 
-    # Basic connection handling
-    pool.with_connection do |connection|
-      # Do some stuff with your connection
-    end
+# Basic connection handling
+pool.with_connection do |connection|
+  # Do some stuff with your connection
+end
 
-    # Retry connections
-    # This will retry your code with a new connection and mark the tried
-    # connection as bad. The bad connection will be put back in the pool
-    # at the default period of 5 minutes.
-    pool.retry_connection_from(ServerConnectionFailed) do |connection|
-      # Do some stuff with your connection
-    end
+# Retry connections
+# This will retry your code with a new connection and mark the tried
+# connection as bad. The bad connection will be put back in the pool
+# at the default period of 5 minutes.
+pool.retry_connection_from(ServerConnectionFailed) do |connection|
+  # Do some stuff with your connection
+end
+```
 
 ## Contributing
 
