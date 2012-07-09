@@ -1,5 +1,3 @@
-require 'active_support/core_ext/array'
-
 module Stillwater
   class ConnectionNotAvailable < StandardError ; end
 
@@ -46,7 +44,7 @@ module Stillwater
     end
 
     def checkout
-      connection_info = available.sample
+      connection_info = available.respond_to?(:sample) ? available.sample : available.choice
       raise ConnectionNotAvailable if connection_info.nil?
       connection_info[:state] = :in_use
 
