@@ -15,8 +15,6 @@ Gem::Specification.new do |gem|
   gem.require_paths = ["lib"]
   gem.version       = Stillwater::VERSION
 
-  gem.add_dependency %q<activesupport>, '~> 2.3.0'
-
   gem.add_development_dependency %q<rake>
   gem.add_development_dependency %q<rspec>
   gem.add_development_dependency %q<mocha>
