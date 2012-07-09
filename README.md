@@ -1,5 +1,8 @@
 # Stillwater
 
+[![Build Status](https://secure.travis-ci.org/trobrock/stillwater.png?branch=master)](http://travis-ci.org/trobrock/stillwater)
+[![Build Status](https://gemnasium.com/trobrock/stillwater.png)](https://gemnasium.com/trobrock/stillwater)
+
 A simple connection pool, that allows connections to different servers (or anything else)
 
 ## Installation
