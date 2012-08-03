@@ -72,18 +72,22 @@ module Stillwater
       describe "#retry_connection_from" do
         before(:each) do
           subject.add { TestConnection.new("two") }
+          subject.add { TestConnection.new("three") }
         end
 
         it "should retry a connection when receiving specific exception type" do
           client_obj = mock("ClientObject")
-          client_obj.stubs(:do_something).raises(TestException).then.returns("client result")
+          client_obj.stubs(:do_something).
+            raises(TestException).then.
+            raises(TestException).then.
+            returns("client result")
 
           result = subject.retry_connection_from(TestException) do |conn|
             client_obj.do_something
           end
 
           subject.available_count.should == 1
-          subject.inactive_count.should == 1
+          subject.inactive_count.should == 2
           result.should == "client result"
         end
 
@@ -96,7 +100,7 @@ module Stillwater
             end
           }.should raise_error(TestException)
 
-          subject.available_count.should == 1
+          subject.available_count.should == 2
           subject.inactive_count.should == 1
         end
 

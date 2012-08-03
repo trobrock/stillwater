@@ -32,15 +32,17 @@ module Stillwater
 
     def retry_connection_from(exception_class, &block)
       count = 0
-      conn  = checkout
-      yield conn
-    rescue exception_class
-      deactivate conn
-      count += 1
-      raise if count >= @retry_count
-      retry
-    ensure
-      checkin conn
+      begin
+        conn  = checkout
+        yield conn
+      rescue exception_class
+        raise if count >= @retry_count
+        deactivate conn
+        count += 1
+        retry
+      ensure
+        checkin conn
+      end
     end
 
     def checkout
