@@ -8,6 +8,7 @@ module Stillwater
       @pool = []
       @reactivate_timeout = 5 * 60 # 5 minutes
       @retry_count = 3
+      @polling = false
     end
 
     def add(&builder)
@@ -15,11 +16,8 @@ module Stillwater
     end
 
     def reactivate_timeout=(seconds)
-      running = !!@thread
-      @thread.kill if running
-      @thread = nil
       @reactivate_timeout = seconds
-      start_polling if running
+      start_polling
     end
 
     def with_connection(&block)
@@ -46,6 +44,7 @@ module Stillwater
     end
 
     def checkout
+      reactivate_all if poll_timeout_exceeded?
       connection_info = available.respond_to?(:sample) ? available.sample : available.choice
       raise ConnectionNotAvailable if connection_info.nil?
       connection_info[:state] = :in_use
@@ -92,11 +91,18 @@ module Stillwater
 
     private
 
-    def start_polling
-      @thread ||= Thread.new do
-        sleep @reactivate_timeout
-        reactivate_all
+    def poll_timeout_exceeded?
+      return false unless @polling
+      now = Time.now
+      if (now - @last_poll_time) >= @reactivate_timeout
+        @last_poll_time = now
+        true
       end
+    end
+
+    def start_polling
+      @polling = true
+      @last_poll_time = Time.now
     end
 
     def available

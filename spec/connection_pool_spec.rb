@@ -168,6 +168,8 @@ module Stillwater
 
           sleep 2
 
+          conn = subject.checkout
+          subject.checkin conn
           subject.available_count.should == 3
           subject.inactive_count.should == 0
         end
