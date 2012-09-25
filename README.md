@@ -2,6 +2,7 @@
 
 [![Build Status](https://secure.travis-ci.org/trobrock/stillwater.png?branch=master)](http://travis-ci.org/trobrock/stillwater)
 [![Build Status](https://gemnasium.com/trobrock/stillwater.png)](https://gemnasium.com/trobrock/stillwater)
+[![Code Climate](https://codeclimate.com/badge.png)](https://codeclimate.com/github/trobrock/stillwater)
 
 A simple connection pool, that allows connections to different servers (or anything else)
 
